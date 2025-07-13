@@ -18,29 +18,86 @@
       }
     }
   </script>
+  <style>
+    /* Custom styles for the modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .modal-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-content {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 800px;
+      position: relative;
+      transform: translateY(-20px);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.show .modal-content {
+      transform: translateY(0);
+    }
+    .modal-close-button {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem; /* Adjusted for RTL */
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #6b7280;
+      transition: color 0.2s ease;
+    }
+    .modal-close-button:hover {
+      color: #ef4444;
+    }
+    .map-iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      border-radius: 0.5rem;
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-gray-800 font-sans">
   <!-- Navbar -->
+  <nav class="bg-white shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16 items-center">
         <a href="#" class="text-2xl font-bold text-primary px-4 py-2">عمرة+</a>
         <div class="hidden md:flex items-center">
-          <a href="#about" class="px-4 py-2 hover:text-primary">من نحن</a>
-          <a href="#packages" class="px-4 py-2 hover:text-primary">الباقات</a>
-          <a href="#requirements" class="px-4 py-2 hover:text-primary">الشروط</a>
-          <a href="#contact" class="px-4 py-2 hover:text-primary">اتصل بنا</a>
+          <a href="#about" class="px-4 py-2 hover:text-primary transition-colors duration-300">من نحن</a>
+          <a href="#packages" class="px-4 py-2 hover:text-primary transition-colors duration-300">الباقات</a>
+          <a href="#requirements" class="px-4 py-2 hover:text-primary transition-colors duration-300">الشروط</a>
+          <a href="#contact" class="px-4 py-2 hover:text-primary transition-colors duration-300">اتصل بنا</a>
         </div>
-        <button id="menuBtn" class="md:hidden flex items-center px-3 py-2 border rounded">
+        <button id="menuBtn" class="md:hidden flex items-center px-3 py-2 border border-gray-300 rounded-md text-gray-600 hover:text-primary hover:border-primary transition-colors duration-300">
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       </div>
-      <div id="mobileMenu" class="hidden md:hidden">
-        <a href="#about" class="block px-4 py-2">من نحن</a>
-        <a href="#packages" class="block px-4 py-2">الباقات</a>
-        <a href="#requirements" class="block px-4 py-2">الشروط</a>
-        <a href="#contact" class="block px-4 py-2">اتصل بنا</a>
+      <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 py-2">
+        <a href="#about" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-primary transition-colors duration-300 rounded-md">من نحن</a>
+        <a href="#packages" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-primary transition-colors duration-300 rounded-md">الباقات</a>
+        <a href="#requirements" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-primary transition-colors duration-300 rounded-md">الشروط</a>
+        <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-primary transition-colors duration-300 rounded-md">اتصل بنا</a>
       </div>
     </div>
   </nav>
@@ -49,8 +106,49 @@
   <section class="pt-0 bg-cover bg-center" style="background-image: url('./ishan-seefromthesky-66Tu10CxYY0-unsplash\ \(1\).jpg');">
     <div class="bg-black bg-opacity-50">
       <div class="max-w-3xl mx-auto text-center py-32 px-4">
-        <h1 class="text-4xl md:text-6xl font-bold text-white">برامج العمرة 1447 هـ – رحلات 14 أيام</h1>
+        <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">برامج العمرة 1447 هـ – رحلات 14 أيام</h1>
         <p class="mt-4 text-lg text-gray-200">اختر فندقك وأسعاره أدناه وأرسل طلب الحجز عبر WhatsApp</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- New Section: Ad/Announcement from Image -->
+  <section class="py-12 bg-white">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
+        <!-- Right side: Bismillah and Announcement -->
+        <div class="flex flex-col items-center md:items-start text-right md:w-1/3">
+          <p class="text-xl font-bold text-gray-700 mb-2">بسم الله الرحمن الرحيم</p>
+          <p class="text-lg text-gray-600 mb-4">(و اتموا الحج و العمرة لله)</p>
+          <p class="text-xl font-bold text-gray-700">صدق الله العظيم</p>
+        </div>
+
+        <!-- Center: Announcement Text -->
+        <div class="flex-grow text-center md:w-1/3">
+          <h2 class="text-4xl font-extrabold text-primary mb-4">اعلان</h2>
+          <p class="text-2xl font-semibold text-gray-800 leading-relaxed">
+            يسرنا تنظيم رحلات العمرة لعام 1447 هـ للسادة الأعضاء وأسرهم (طيران)
+          </p>
+        </div>
+
+        <!-- Left side: Association Info and Logo -->
+        <div class="flex flex-col items-center md:items-end text-left md:w-1/3">
+          <img src="./cairo.png" alt="جامعة القاهرة" class="w-20 h-20 mb-4 rounded-full shadow-md align-center">
+          <p class="text-lg font-semibold text-gray-700">جمعية الخدمات الاجتماعية</p>
+          <p class="text-md text-gray-600">للعاملين بالأمانة العامة وأسرهم</p>
+          <p class="text-md text-gray-600">المشهرة برقم 1664 لسنة 2002</p>
+        </div>
+      </div>
+
+      <!-- Bottom: Address and Airplane Icon -->
+      <div class="flex flex-col md:flex-row items-center justify-center gap-4 mt-8 bg-gray-100 p-6 rounded-lg shadow-inner">
+        <svg class="h-12 w-12 text-primary rotate-90 md:rotate-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0v-7.5m3 7.5a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V10.5m11.25 4.5v7.5m-6-7.5h6m6-10.5v7.5m-3-7.5a1.5 1.5 0 0 0-3 0m3 0H9m12 0h-3.375c-.621 0-1.125-.504-1.125-1.125V4.875c0-.621.504-1.125 1.125-1.125H21m-9 0h.008v.008H12v-.008Zm0 2.25h.008v.008H12v-.008Zm0 2.25h.008v.008H12v-.008Z" />
+        </svg>
+        <!-- Clickable address to open map modal -->
+        <a href="#" id="openMapModal" class="text-xl font-medium text-gray-700 text-center md:text-right hover:text-primary hover:underline cursor-pointer transition-colors duration-300">
+          المقر: 49 شارع الكرديلي من ش البحر الأعظم ناصية قهوة فينسيا القزاز/ الجيزة
+        </a>
       </div>
     </div>
   </section>
@@ -61,33 +159,29 @@
       <h2 class="text-3xl font-bold text-center text-primary mb-8">باقات العمرة</h2>
       <h2 class="text-3xl font-bold text-center text-primary mb-8">برامج العمرة 1447 هـ – رحلات 14 أيام</h2>
 
-      <div class="overflow-x-auto">
+      <div class="overflow-x-auto rounded-lg shadow-lg">
         <table class="min-w-full border-collapse">
           <thead>
             <tr class="bg-primary text-white">
-              <th class="p-3 border">الفنادق</th>
-              <th class="p-3 border">ثنائي</th>
-              <th class="p-3 border">ثلاثي</th>
-              <th class="p-3 border">رباعي</th>
-              <th class="p-3 border">الحجز</th>
+              <th class="p-3 border border-primary-dark">الفنادق</th>
+              <th class="p-3 border border-primary-dark">ثنائي</th>
+              <th class="p-3 border border-primary-dark">ثلاثي</th>
+              <th class="p-3 border border-primary-dark">رباعي</th>
+              <th class="p-3 border border-primary-dark">الحجز</th>
             </tr>
           </thead>
           <tbody>
             <tr class="bg-gray-100 text-gray-800">
-              <td class="p-3 border">فلسطين بدر الماسة (شارع إبراهيم الخليل) – مكة المكرمة</td>
-              <td class="p-3 border text-center">50,000 ج.م</td>
-              <td class="p-3 border text-center">46,500 ج.م</td>
-              <td class="p-3 border text-center">40,000 ج.م</td>
-              <td class="p-3 border text-center">
-                <button class="px-4 py-2 bg-primary text-white rounded hover:bg-green-800 transition" onclick="bookWhatsApp('المدينة: مكة - فندق بدر الماسة')">احجز الآن</button>
+              <td class="p-3 border border-gray-200">فلسطين بدر الماسة (شارع إبراهيم الخليل) – مكة المكرمة</td>
+              <td class="p-3 border border-gray-200 text-center">50,000 ج.م</td>
+              <td class="p-3 border border-gray-200 text-center">46,500 ج.م</td>
+              <td class="p-3 border border-gray-200 text-center">40,000 ج.م</td>
+              <td class="p-3 border border-gray-200 text-center">
+                <button class="px-4 py-2 bg-primary text-white rounded-md hover:bg-green-800 transition-colors duration-300 shadow-md" onclick="bookWhatsApp('المدينة: مكة - فندق بدر الماسة')">احجز الآن</button>
               </td>
             </tr>
             <tr class="bg-white text-gray-800">
-              <th class="p-3 border" colspan="5">مجموعة ديار الفندقية (450 م من الحرم) – المدينة المنورة</th>
-
-              <!-- <td class="p-3 border text-center"> -->
-                <!-- <button class="px-4 py-2 bg-primary text-white rounded hover:bg-green-800 transition" onclick="bookWhatsApp('المدينة: المدينة المنورة - مجموعة ديار الفندقية')">احجز الآن</button> -->
-              </td>
+              <th class="p-3 border border-gray-200" colspan="5">مجموعة ديار الفندقية (450 م من الحرم) – المدينة المنورة</th>
             </tr>
           </tbody>
         </table>
@@ -98,8 +192,8 @@
   <!-- Requirements -->
   <section id="requirements" class="py-16 bg-gray-100">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center text-primary">الشروط والأوراق المطلوبة</h2>
-      <ul class="mt-8 list-disc list-inside text-gray-600 space-y-2">
+      <h2 class="text-3xl font-bold text-center text-primary mb-8">الشروط والأوراق المطلوبة</h2>
+      <ul class="mt-8 list-disc list-inside text-gray-700 space-y-3 text-lg">
         <li>صورة شخصية حديثة</li>
         <li>النسخة الأصلية من جواز السفر</li>
         <li>20000 ج.م مقدم حجز</li>
@@ -109,24 +203,24 @@
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="py-16">
+  <section id="contact" class="py-16 bg-white">
     <div class="max-w-2xl mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold text-primary">للاستعلام والحجز</h2>
-      <p class="mt-4 text-gray-600">اضغط على أي زر "احجز الآن" أعلاه وسيتم فتح WhatsApp للتواصل.</p>
+      <h2 class="text-3xl font-bold text-primary mb-4">للاستعلام والحجز</h2>
+      <p class="mt-4 text-gray-600 text-lg">اضغط على أي زر "احجز الآن" أعلاه وسيتم فتح WhatsApp للتواصل.</p>
     </div>
   </section>
 
     <!-- Additional Phone Numbers -->
-  <section id="phones" class="py-8 bg-white">
+  <section id="phones" class="py-8 bg-gray-100">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-bold text-primary">أرقام التواصل المباشر</h2>
+      <h2 class="text-2xl font-bold text-primary mb-6">أرقام التواصل المباشر</h2>
       <div class="mt-4 flex flex-wrap justify-center gap-4">
-        <a href="tel:01122023737" class="px-4 py-2 bg-secondary text-white rounded hover:bg-yellow-500 transition">01122023737</a>
-        <a href="tel:01022314595" class="px-4 py-2 bg-secondary text-white rounded hover:bg-yellow-500 transition">01022314595</a>
-        <a href="tel:01113335714" class="px-4 py-2 bg-secondary text-white rounded hover:bg-yellow-500 transition">01113335714</a>
-        <a href="tel:01008229929" class="px-4 py-2 bg-secondary text-white rounded hover:bg-yellow-500 transition">01008229929</a>
-        <a href="tel:01122050850" class="px-4 py-2 bg-secondary text-white rounded hover:bg-yellow-500 transition">01122050850</a>
-        <a href="tel:01003171182" class="px-4 py-2 bg-secondary text-white rounded hover:bg-yellow-500 transition">01003171182</a>
+        <a href="tel:01122023737" class="px-6 py-3 bg-secondary text-white rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md text-lg font-semibold">01122023737</a>
+        <a href="tel:01022314595" class="px-6 py-3 bg-secondary text-white rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md text-lg font-semibold">01022314595</a>
+        <a href="tel:01113335714" class="px-6 py-3 bg-secondary text-white rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md text-lg font-semibold">01113335714</a>
+        <a href="tel:01008229929" class="px-6 py-3 bg-secondary text-white rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md text-lg font-semibold">01008229929</a>
+        <a href="tel:01122050850" class="px-6 py-3 bg-secondary text-white rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md text-lg font-semibold">01122050850</a>
+        <a href="tel:01003171182" class="px-6 py-3 bg-secondary text-white rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md text-lg font-semibold">01003171182</a>
       </div>
     </div>
   </section>
@@ -134,9 +228,27 @@
   <!-- Footer -->
   <footer class="bg-primary text-white py-6">
     <div class="max-w-7xl mx-auto px-4 text-center">
-      <p>© 2025 جمعية الخدمات الاجتماعية. جميع الحقوق محفوظة.</p>
+      <p class="text-sm md:text-base">© 2025 جمعية الخدمات الاجتماعية. جميع الحقوق محفوظة.</p>
     </div>
   </footer>
+
+  <!-- Map Modal -->
+  <div id="mapModal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <button id="closeMapModal" class="modal-close-button">
+        &times;
+      </button>
+      <h3 class="text-2xl font-bold text-primary mb-4 text-right">موقعنا على الخريطة</h3>
+      <iframe
+        id="googleMapIframe"
+        class="map-iframe"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.791523419018!2d31.2182069!3d30.0401815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145841267b2c6e6b%3A0x6b7c5e2d6b7c5e2d!2s49%20El%20Kerdily%20St%2C%20Giza%20District%2C%20Giza%20Governorate%203720002%2C%20Egypt!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+      ></iframe>
+    </div>
+  </div>
 
   <!-- JS ES6 -->
   <script>
@@ -151,6 +263,30 @@
       const text = `أرغب في حجز عمرة‎.%0A${packageInfo}`;
       window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`, '_blank');
     }
+
+    // Map Modal functionality
+    const mapModal = document.getElementById('mapModal');
+    const openMapModalBtn = document.getElementById('openMapModal');
+    const closeMapModalBtn = document.getElementById('closeMapModal');
+
+    openMapModalBtn.addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent default link behavior
+      mapModal.classList.remove('hidden');
+      mapModal.classList.add('show');
+    });
+
+    closeMapModalBtn.addEventListener('click', () => {
+      mapModal.classList.remove('show');
+      mapModal.classList.add('hidden');
+    });
+
+    // Close modal when clicking outside of the content
+    mapModal.addEventListener('click', (e) => {
+      if (e.target === mapModal) {
+        mapModal.classList.remove('show');
+        mapModal.classList.add('hidden');
+      }
+    });
   </script>
 </body>
 </html>
