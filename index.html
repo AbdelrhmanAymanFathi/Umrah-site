@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>موقع العمرة الحديث</title>
+  <!-- Tailwind v3 CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#006c35', /* اللون الأخضر السعودي */
+            secondary: '#fbbf24'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Navbar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <a href="#" class="text-2xl font-bold text-primary px-4 py-2">عمرة+</a>
+        <div class="hidden md:flex items-center">
+          <a href="#about" class="px-4 py-2 hover:text-primary">من نحن</a>
+          <a href="#packages" class="px-4 py-2 hover:text-primary">الباقات</a>
+          <a href="#requirements" class="px-4 py-2 hover:text-primary">الشروط</a>
+          <a href="#contact" class="px-4 py-2 hover:text-primary">اتصل بنا</a>
+        </div>
+        <button id="menuBtn" class="md:hidden flex items-center px-3 py-2 border rounded">
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+      <div id="mobileMenu" class="hidden md:hidden">
+        <a href="#about" class="block px-4 py-2">من نحن</a>
+        <a href="#packages" class="block px-4 py-2">الباقات</a>
+        <a href="#requirements" class="block px-4 py-2">الشروط</a>
+        <a href="#contact" class="block px-4 py-2">اتصل بنا</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="pt-0 bg-cover bg-center" style="background-image: url('./ishan-seefromthesky-66Tu10CxYY0-unsplash\ \(1\).jpg');">
+    <div class="bg-black bg-opacity-50">
+      <div class="max-w-3xl mx-auto text-center py-32 px-4">
+        <h1 class="text-4xl md:text-6xl font-bold text-white">برامج العمرة 1447 هـ – رحلات 14 أيام</h1>
+        <p class="mt-4 text-lg text-gray-200">اختر فندقك وأسعاره أدناه وأرسل طلب الحجز عبر WhatsApp</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages Table -->
+  <section id="packages" class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-primary mb-8">باقات العمرة</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full border-collapse">
+          <thead>
+            <tr class="bg-primary text-white">
+              <th class="p-3 border">الفنادق</th>
+              <th class="p-3 border">ثنائي</th>
+              <th class="p-3 border">ثلاثي</th>
+              <th class="p-3 border">رباعي</th>
+              <th class="p-3 border">الحجز</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-gray-100 text-gray-800">
+              <td class="p-3 border">فلسطين بدر الماسة (شارع إبراهيم الخليل) – مكة المكرمة</td>
+              <td class="p-3 border text-center">50,000 ج.م</td>
+              <td class="p-3 border text-center">46,500 ج.م</td>
+              <td class="p-3 border text-center">40,000 ج.م</td>
+              <td class="p-3 border text-center">
+                <button class="px-4 py-2 bg-primary text-white rounded hover:bg-green-800 transition" onclick="bookWhatsApp('المدينة: مكة - فندق بدر الماسة')">احجز الآن</button>
+              </td>
+            </tr>
+            <tr class="bg-white text-gray-800">
+              <th class="p-3 border" colspan="5">مجموعة ديار الفندقية (450 م من الحرم) – المدينة المنورة</th>
+
+              <!-- <td class="p-3 border text-center"> -->
+                <!-- <button class="px-4 py-2 bg-primary text-white rounded hover:bg-green-800 transition" onclick="bookWhatsApp('المدينة: المدينة المنورة - مجموعة ديار الفندقية')">احجز الآن</button> -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements -->
+  <section id="requirements" class="py-16 bg-gray-100">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-primary">الشروط والأوراق المطلوبة</h2>
+      <ul class="mt-8 list-disc list-inside text-gray-600 space-y-2">
+        <li>صورة شخصية حديثة</li>
+        <li>النسخة الأصلية من جواز السفر</li>
+        <li>20000 ج.م مقدم حجز</li>
+        <li>باقي المبلغ بالتقسيط شهرياً لمدة 12 شهر</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-primary">للاستعلام والحجز</h2>
+      <p class="mt-4 text-gray-600">اضغط على أي زر "احجز الآن" أعلاه وسيتم فتح WhatsApp للتواصل.</p>
+    </div>
+  </section>
+
+    <!-- Additional Phone Numbers -->
+  <section id="phones" class="py-8 bg-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold text-primary">أرقام التواصل المباشر</h2>
+      <div class="mt-4 flex flex-wrap justify-center gap-4">
+        <a href="tel:01122023737" class="px-4 py-2 bg-secondary text-white rounded hover:bg-yellow-500 transition">01122023737</a>
+        <a href="tel:01022314595" class="px-4 py-2 bg-secondary text-white rounded hover:bg-yellow-500 transition">01022314595</a>
+        <a href="tel:01113335714" class="px-4 py-2 bg-secondary text-white rounded hover:bg-yellow-500 transition">01113335714</a>
+        <a href="tel:01008229929" class="px-4 py-2 bg-secondary text-white rounded hover:bg-yellow-500 transition">01008229929</a>
+        <a href="tel:01122050850" class="px-4 py-2 bg-secondary text-white rounded hover:bg-yellow-500 transition">01122050850</a>
+        <a href="tel:01003171182" class="px-4 py-2 bg-secondary text-white rounded hover:bg-yellow-500 transition">01003171182</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white py-6">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p>© 2025 جمعية الخدمات الاجتماعية. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <!-- JS ES6 -->
+  <script>
+    // Mobile menu toggle
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+
+    // WhatsApp booking function
+    function bookWhatsApp(packageInfo) {
+      const waNumber = '201113335714';
+      const text = `أرغب في حجز عمرة‎.%0A${packageInfo}`;
+      window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+  </script>
+</body>
+</html>
